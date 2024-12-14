@@ -6,8 +6,8 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    nix-config = {
-      url = "github:EarthGman/nix-config";
+    my-lib = {
+      url = "github:EarthGman/nix-lib";
     };
 
     fonts = {
@@ -16,9 +16,9 @@
     };
   };
 
-  outputs = { nixpkgs, nix-config, ... } @ inputs:
+  outputs = { nixpkgs, my-lib, ... } @ inputs:
     let
-      lib = nix-config.lib;
+      inherit (my-lib) lib;
       inherit (lib) forAllSystems;
     in
     {
