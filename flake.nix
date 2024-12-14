@@ -8,7 +8,7 @@
     };
   };
 
-  outputs = { inputs, ... }: {
+  outputs = { ... } @ inputs: {
     overlay = rec {
       packages = final: prev: import ./pkgs { pkgs = final; inherit inputs; };
       default = packages;

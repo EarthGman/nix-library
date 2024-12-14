@@ -1,0 +1,23 @@
+{
+  "nodes": {
+    "fonts": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-sOs0a6D9Xacxl7Gy4k6NNcW32am0Pr0xFf9kK3hatws=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json"
+      }
+    },
+    "root": {
+      "inputs": {
+        "fonts": "fonts"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
