@@ -1,13 +1,9 @@
 {
-  description = "my custom nix derivations";
+  description = "my custom nix packages and functions";
 
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-
-    my-lib = {
-      url = "github:EarthGman/nix-lib";
     };
 
     fonts = {
@@ -16,12 +12,13 @@
     };
   };
 
-  outputs = { nixpkgs, my-lib, ... } @ inputs:
+  outputs = { nixpkgs, ... } @ inputs:
     let
-      inherit (my-lib) lib;
+      lib = import ./lib { inherit nixpkgs; };
       inherit (lib) forAllSystems;
     in
     {
+      inherit lib;
       overlay = rec {
         packages = final: prev: import ./pkgs { pkgs = final; inherit inputs; };
         default = packages;
