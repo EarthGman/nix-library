@@ -18,13 +18,8 @@
 
 let
   pname = "nordvpn";
-  version = "3.18.3";
-  LuisChDev = {
-    name = "Luis Chavarriaga";
-    email = "luischa123@gmail.com";
-    github = "LuisChDev";
-    githubId = 24978009;
-  };
+  version = "3.19.2";
+
   buildEnv =
     if builtins.typeOf buildFHSEnvChroot == "set" then
       buildFHSEnvChroot
@@ -36,8 +31,8 @@ let
 
     src = fetchurl {
       url =
-        "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_${version}_amd64.deb";
-      sha256 = "19km96p2lps6hhgfdxfm69yks3yfml319xk8ppflbh04qwvxwax4";
+        "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb";
+      sha256 = "1k4cmppg4x2gvlsxbvxdkfz40w13y34sa8j1mjjrf31yakvqri2p";
     };
 
     buildInputs = [ libxml2 libidn2 ];
@@ -67,19 +62,18 @@ let
     runScript = "nordvpnd";
 
     # hardcoded path to /sbin/ip
-    targetPkgs = pkgs:
-      with pkgs; [
-        nordVPNBase
-        sysctl
-        iptables
-        iproute2
-        procps
-        cacert
-        libxml2
-        libidn2
-        zlib
-        wireguard-tools
-      ];
+    targetPkgs = pkgs: [
+      nordVPNBase
+      sysctl
+      iptables
+      iproute2
+      procps
+      cacert
+      libxml2
+      libidn2
+      zlib
+      wireguard-tools
+    ];
   };
 
 in

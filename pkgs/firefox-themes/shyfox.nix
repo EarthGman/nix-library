@@ -7,7 +7,7 @@ stdenvNoCC.mkDerivation rec {
     owner = "Naezr";
     repo = "ShyFox";
     rev = "main";
-    hash = "sha256-7H+DU4o3Ao8qAgcYDHVScR3pDSOpdETFsEMiErCQSA8=";
+    hash = "sha256-y/Md0VR8h4n4+xzqfVNy7ARf/NG45T440dpHvC5KkkA=";
   };
 
   wallpaper =
