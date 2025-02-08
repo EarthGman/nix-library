@@ -19,7 +19,7 @@
     in
     {
       inherit lib;
-      overlay = rec {
+      overlays = rec {
         packages = final: prev: import ./pkgs { pkgs = final; inherit inputs; };
         default = packages;
       };
