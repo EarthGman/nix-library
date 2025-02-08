@@ -1,13 +1,16 @@
-{ pkgs, stdenvNoCC, ... }:
+{ inputs, pkgs, stdenvNoCC, ... }:
+let
+  fonts = builtins.fromJSON (builtins.readFile inputs.fonts.outPath);
+in
 stdenvNoCC.mkDerivation {
   pname = "8-bit-operator-font";
   version = "1.0";
-  src = pkgs.fetchZip {
-    url = "https://www.1001freefonts.com/d/14007/8-bit-operator.zip";
-    hash = "sha256-1gd6fh92593d44alfmkk20p4r6znjf8wmqjdqkfnd8kma07w0ha0";
-  };
+
+  src = pkgs.fetchurl fonts."8-bit-operator";
+  phases = [ "installPhase" ];
+
   installPhase = ''
     mkdir -p $out/share/fonts
-    cp -r $src $out/share/fonts
-    	'';
+    ${pkgs.unzip}/bin/unzip $src -d $out/share/fonts 
+  '';
 }
