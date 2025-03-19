@@ -3,6 +3,7 @@
 , fetchFromGitLab
 , makeDesktopItem
 , fetchurl
+, lib
 , ...
 }:
 let
@@ -52,4 +53,12 @@ stdenv.mkDerivation {
     cp ${icon} $out/share/icons/hicolor/"512"x"512"/apps/cutentr.svg
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "A 3DS streaming client for Linux";
+    homepage = "https://gitlab.com/BoltsJ/cuteNTR";
+    license = licenses.gpl3Plus;
+    maintainers = [ "EarthGman" ];
+    platforms = [ "x86_64-linux" ];
+  };
 }
