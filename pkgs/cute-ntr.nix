@@ -3,7 +3,6 @@
 , fetchFromGitLab
 , makeDesktopItem
 , fetchurl
-, imagemagick
 , ...
 }:
 let
@@ -36,10 +35,6 @@ stdenv.mkDerivation {
     wrapQtAppsHook
   ];
 
-  nativeBuildInputs = [
-    imagemagick
-  ];
-
   buildPhase = ''
     qmake
     make
@@ -53,10 +48,8 @@ stdenv.mkDerivation {
     install -m 444 -D "${desktopItem}/share/applications/"* \
       -t $out/share/applications/
 
-    for size in 16 24 32 48 64 128 256 512; do
-      mkdir -p $out/share/icons/hicolor/"$size"x"$size"/apps
-      magick -background none ${icon} -resize "$size"x"$size" $out/share/icons/hicolor/"$size"x"$size"/apps/cutentr.svg
-    done
+    mkdir -p $out/share/icons/hicolor/"512"x"512"/apps
+    cp ${icon} $out/share/icons/hicolor/"512"x"512"/apps/cutentr.svg
     runHook postInstall
   '';
 }
