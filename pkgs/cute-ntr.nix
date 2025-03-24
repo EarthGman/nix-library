@@ -6,34 +6,41 @@
 , lib
 , ...
 }:
+
 let
+  pname = "cutentr";
+  version = "0.3.3";
+
   icon = fetchurl {
-    url = "https://gitlab.com/BoltsJ/cuteNTR/-/blob/d217aae4f5708b72c5229174cd53556eea107468/setup/gui/com.gitlab.BoltsJ.cuteNTR.svg";
-    sha256 = "sha256-bnSNJh13E2U11b+qW0SjfvZQ/VQi5Dbuz65g3svTgWo=";
+    url = "https://gitlab.com/BoltsJ/cuteNTR/-/raw/${version}/setup/gui/com.gitlab.BoltsJ.cuteNTR.svg";
+    hash = "sha256-bnSNJh13E2U11b+qW0SjfvZQ/VQi5Dbuz65g3svTgWo=";
   };
 
   desktopItem = makeDesktopItem {
     name = "cuteNTR";
     desktopName = "cuteNTR";
-    icon = "cutentr";
-    exec = "cutentr";
+    icon = pname;
+    exec = pname;
     categories = [ "Game" ];
   };
 in
+
 stdenv.mkDerivation {
-  pname = "cuteNTR";
-  version = "0.3.1";
+  inherit pname version;
 
   src = fetchFromGitLab {
     owner = "BoltsJ";
     repo = "cuteNTR";
-    rev = "d217aae4f5708b72c5229174cd53556eea107468";
-    hash = "sha256-NNmA88BKTS8EGiL3IyDnI+6CA8AWSP3pBlYojHEamgU=";
+    rev = "${version}";
+    hash = "sha256-KfnC9R38qSMhQDeaMBWm1HoO3Wzs5kyfPFwdMZCWw4E=";
   };
+
+  nativeBuildInputs = with libsForQt5.qt5; [
+    wrapQtAppsHook
+  ];
 
   buildInputs = with libsForQt5.qt5; [
     qtbase
-    wrapQtAppsHook
   ];
 
   buildPhase = ''
@@ -42,7 +49,6 @@ stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    runHook preinstall
     mkdir -p $out/bin
     cp -r cutentr $out/bin
 
@@ -50,15 +56,15 @@ stdenv.mkDerivation {
       -t $out/share/applications/
 
     mkdir -p $out/share/icons/hicolor/"512"x"512"/apps
-    cp ${icon} $out/share/icons/hicolor/"512"x"512"/apps/cutentr.svg
-    runHook postInstall
+    cp ${icon} $out/share/icons/hicolor/"512"x"512"/apps/${pname}.svg
   '';
 
   meta = with lib; {
     description = "A 3DS streaming client for Linux";
     homepage = "https://gitlab.com/BoltsJ/cuteNTR";
-    license = licenses.gpl3Plus;
-    maintainers = [ "EarthGman" ];
+    license = licenses.gpl3Only;
+    mainProgram = "cutentr";
     platforms = [ "x86_64-linux" ];
+    # maintainers = [ maintainers.EarthGman ];
   };
 }

@@ -2,15 +2,7 @@
 let
   python3Packages = pkgs.python3Packages.override {
     overrides = final: prev: {
-      pytubefix8 = prev.pytubefix.overridePythonAttrs (old: rec {
-        version = "8.8.1";
-        src = pkgs.fetchFromGitHub {
-          # unfortunately cant just override the version (would be nice though)
-          owner = "JuanBindez";
-          repo = "pytubefix";
-          rev = "refs/tags/v${version}";
-          hash = "sha256-0ukh+739uvg33lsai8Mu88yMnS036LVLY1MXklAArsc=";
-        };
+      pytubefix = prev.pytubefix.overridePythonAttrs (old: {
         doCheck = false; # test fails to resolve domain name lol
       });
     };
@@ -31,7 +23,7 @@ python3Packages.buildPythonPackage {
 
   dependencies = with python3Packages; [
     setuptools
-    pytubefix8
+    pytubefix
     requests
     yt-dlp
   ];
