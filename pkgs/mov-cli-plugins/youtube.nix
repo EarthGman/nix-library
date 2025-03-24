@@ -1,18 +1,19 @@
-{ python3Packages
+{ lib
+, python3Packages
 , fetchFromGitHub
 , ...
 }:
 
-python3Packages.buildPythonPackage {
+python3Packages.buildPythonPackage rec {
   pname = "mov-cli-youtube";
-  version = "1.3.5";
+  version = "1.3.8";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "mov-cli";
     repo = "mov-cli-youtube";
-    rev = "9040c1276af08d25d6977aa33a8a408f7d733324";
-    hash = "sha256-cJQGLaGubhtvWEPhe5NpTeLGXlMjUhKU2I5+z8pMWVw=";
+    rev = "${version}";
+    hash = "sha256-2dc6EYy+6vCOCy+FZBVKWzeV3xFAswUaX9XfYk0jz1E=";
   };
 
   dependencies = with python3Packages; [
@@ -21,4 +22,16 @@ python3Packages.buildPythonPackage {
     requests
     yt-dlp
   ];
+
+  meta = with lib; {
+    description = "Youtube plugin for mov-cli";
+    homepage = "https://github.com/mov-cli/mov-cli-youtube";
+    license = licenses.mit;
+    platforms = [
+      "x86_64-linux"
+      "aarch64_linux"
+      "aarch64_darwin"
+    ];
+    # maintainers = [ maintainers.EarthGman ];
+  };
 }
