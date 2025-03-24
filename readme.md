@@ -43,31 +43,39 @@ NixOS grub theme:
 -  https://github.com/AdisonCavani/distro-grub-themes
 - package name = nixos-grub
 
+
 Gnome Tiling Shell: 
 - https://extensions.gnome.org/extension/7065/tiling-shell/
 - pacakge name = gnome-tilingShell
+
 
 Userchrome Toggle Extended:
 - Expanded version of Userchrome Toggle extension for Firefox
 - package name = uct-extended
 
+
 Betterfox javascript patch for Firefox:
 - https://github.com/yokoffing/BetterFox
 - package name = betterfox
+
 
 Shyfox theme by Naezr:
 - https://github.com/Naezr/ShyFox
 - package name = shyfox
 
+
 Font from the game OMORI:
 - package name = omori-font
+
 
 8 Bit operator font from Undertale: 
 - package name = "8-bit-operator-font" # note the quotes
 
+
 Youtube Extension for mov-cli:
 - https://github.com/mov-cli/mov-cli-youtube
 - mov-cli-youtube
+
 
 CuteNTR, streaming client for New Nintendo 3ds:
 - https://gitlab.com/BoltsJ/cuteNTR
