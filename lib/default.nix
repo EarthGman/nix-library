@@ -32,7 +32,7 @@ in
         optionalString;
     in
     {
-      enable = mkEnableOption (programName + optionalString (description != null) description);
+      enable = mkEnableOption (programName + " " + optionalString (description != null) description);
       package = mkPackageOption pkgs packageName extraPackageArgs;
     };
 }
