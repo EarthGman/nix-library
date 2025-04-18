@@ -21,7 +21,7 @@ in
   mkProgramOption =
     { pkgs
     , programName
-    , packageName
+    , packageName ? programName
     , description ? null
     , extraPackageArgs ? { }
     }:
