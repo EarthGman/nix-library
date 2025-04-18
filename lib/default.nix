@@ -17,4 +17,22 @@ in
       workingDirectory = dir;
     in
     lib.forEach (builtins.attrNames (builtins.readDir workingDirectory)) (dirname: workingDirectory + /${dirname});
+
+  mkProgramOption =
+    { pkgs
+    , programName
+    , packageName
+    , description ? null
+    , extraPackageArgs ? { }
+    }:
+    let
+      inherit (lib)
+        mkEnableOption
+        mkPackageOption
+        optionalString;
+    in
+    {
+      enable = mkEnableOption (programName + optionalString (description != null) description);
+      package = mkPackageOption pkgs packageName extraPackageArgs;
+    };
 }

@@ -65,6 +65,6 @@ stdenv.mkDerivation {
     license = licenses.gpl3Only;
     mainProgram = "cutentr";
     platforms = [ "x86_64-linux" ];
-    # maintainers = [ maintainers.EarthGman ];
+    maintainers = [ maintainers.EarthGman ];
   };
 }
