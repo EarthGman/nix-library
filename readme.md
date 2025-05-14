@@ -76,11 +76,11 @@ Youtube Extension for mov-cli:
 - https://github.com/mov-cli/mov-cli-youtube
 - mov-cli-youtube
 
-
-CuteNTR, streaming client for New Nintendo 3ds:
-- https://gitlab.com/BoltsJ/cuteNTR
-- package name = cutentr
-
 ------------------------------------------------------------------------
 
-autoImport function - takes a directory and returns a list of all files and directories inside as nix paths. Can be used on ./modules in a nixos configuration to easily import all modules.
+# autoImport function
+- takes a directory and returns a list of all files and directories inside as nix paths. Can be used on ./modules in a nixos configuration to easily import all modules.
+
+# mkProgramOption function
+- Used for wrapping program options for nixos or home-manager
+- takes pkgs programName and an optional description and returns an enable and package option attribute set. package used defaults to programName, if different then use packageName.
