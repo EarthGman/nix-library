@@ -11,12 +11,14 @@ in
     "x86_64-darwin"
   ];
 
-  # read a directory and return a list of all filenames inside
+  # read a directory and return a list of all filenames inside except any default.nix
   autoImport = dir:
     let
-      workingDirectory = dir;
+      fileNames = builtins.attrNames (builtins.readDir dir);
+      strippedFileNames = lib.filter (name: name != "default.nix") fileNames;
     in
-    lib.forEach (builtins.attrNames (builtins.readDir workingDirectory)) (dirname: workingDirectory + /${dirname});
+    lib.forEach (strippedFileNames)
+      (fileName: dir + /${fileName});
 
   mkProgramOption =
     { pkgs
