@@ -84,3 +84,7 @@ Youtube Extension for mov-cli:
 # mkProgramOption function
 - Used for wrapping program options for nixos or home-manager
 - takes pkgs programName and an optional description and returns an enable and package option attribute set. package used defaults to programName, if different then use packageName.
+
+# listToEnableOption
+- takes a list of strings and returns a nested set assigned with a value of true. 
+- EX: [ "profiles" "default" "enable" ] -> { profiles.default.enable = true; }

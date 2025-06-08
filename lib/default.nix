@@ -37,4 +37,26 @@ in
       enable = mkEnableOption (programName + " " + optionalString (description != null) description);
       package = mkPackageOption pkgs packageName extraPackageArgs;
     };
+
+  listToEnableOption = list:
+    let
+      # Helper function to escape attribute names if needed
+      escapeAttrName = name:
+        if builtins.match "[a-zA-Z_][a-zA-Z0-9_'-]*" name != null
+        then name
+        else "\"${name}\"";
+
+      # Recursive function to build nested attribute set
+      buildNested = remaining:
+        if builtins.length remaining == 2
+        then {
+          ${escapeAttrName (builtins.head remaining)}.${builtins.elemAt remaining 1} = true;
+        }
+        else {
+          ${escapeAttrName (builtins.head remaining)} = buildNested (builtins.tail remaining);
+        };
+    in
+    if builtins.length list == 1
+    then { ${builtins.head list} = true; }
+    else buildNested list;
 }
