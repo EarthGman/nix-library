@@ -1,17 +1,6 @@
 {
   description = "my custom nix packages and functions";
 
-  inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-
-    fonts = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
-      flake = false;
-    };
-  };
-
   outputs = { nixpkgs, ... } @ inputs:
     let
       lib = import ./lib { inherit nixpkgs; };
@@ -30,4 +19,25 @@
         import ./pkgs { inherit pkgs inputs; }
       );
     };
+
+  inputs = {
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lzn = {
+      url = "github:nvim-neorocks/lz.n";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fonts = {
+      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
+      flake = false;
+    };
+  };
 }
