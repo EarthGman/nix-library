@@ -11,10 +11,7 @@ in
   omori-font = callPackage ./fonts/omori-font.nix { inherit inputs; };
   "8-bit-operator-font" = callPackage ./fonts/8-bit-operator-jve.nix { inherit inputs; };
   mov-cli-youtube = callPackage ./mov-cli-plugins/youtube.nix { };
-<<<<<<< HEAD
   fzf-edit = callPackage ./scripts/fzf-edit.nix { };
-=======
 
   extraVimPlugins = import ./extraVimPlugins { inherit pkgs inputs; };
->>>>>>> cb1ab1a (move extraVimPlugins to nix-library)
 }
