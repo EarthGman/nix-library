@@ -2,7 +2,7 @@
 
 ------------------------------------------------------------------------
 
-Repo for packages and functions that are too niche for or waiting to be merged into Nixpkgs.
+Personal repo for packages and functions that are too niche for or waiting to be merged into Nixpkgs.
 
 # How to consume
 
@@ -15,20 +15,18 @@ inputs.gmans-nixpkgs = {
 };
 ```
 
-
 To add lib functions to Nixpkgs.lib
 
 ```nix
 lib = nixpkgs.lib.extend (final: prev: inputs.gmans-nixpkgs.lib);
 
 # for nixos configurations
-nixosConfigurations.nixos = lib.mkNixosSystem {
-  specialArgs = inherit lib;
+nixosConfigurations.nixos = lib.nixosSystem {
+  specialArgs = inherit lib; # pass new lib through to your modules
 };
 ```
 
-
-Finally create an overlay to append to pkgs
+Finally consume the overlay to append the pkgs argument.
 
 ```nix
 # configuration.nix
@@ -42,11 +40,6 @@ nixpkgs.overlays = [ inputs.gmans-nixpkgs.overlays.default ];
 NixOS grub theme: 
 -  https://github.com/AdisonCavani/distro-grub-themes
 - package name = nixos-grub
-
-
-Gnome Tiling Shell: 
-- https://extensions.gnome.org/extension/7065/tiling-shell/
-- pacakge name = gnome-tilingShell
 
 
 Userchrome Toggle Extended:
@@ -74,16 +67,32 @@ Font from the game OMORI:
 
 Youtube Extension for mov-cli:
 - https://github.com/mov-cli/mov-cli-youtube
-- mov-cli-youtube
+- package name = mov-cli-youtube
+
+
+extraVimPluigins:
+- vague theme:
+    -  https://github.com/vague2k/vague.nvim
+    -  package name = extraVimPlugins.nvim-vague
+- direnv-nvim:
+	- https://github.com/NotAShelf/direnv.nvim
+	- package name = extraVimPlugins.direnv-nvim
+- universal-clipboard:
+    - https://github.com/swaits/universal-clipboard.nvim
+    - package name = extraVimPlugins.nvim-universal-clipboard
+- lzn:
+    - https://github.com/nvim-neorocks/lz.n
+    - package name = extraVimPlugins.lzn
 
 ------------------------------------------------------------------------
+# lib functions:
 
-# autoImport function
-- takes a directory and returns a list of all files and directories inside as nix paths. Can be used on ./modules in a nixos configuration to easily import all modules.
+# autoImport
+- takes a directory and returns a list of all files and directories inside (except files named "default.nix") as nix paths. Can be used to easily import all Nix modules as they are added automatically.
 
-# mkProgramOption function
-- Used for wrapping program options for nixos or home-manager
-- takes pkgs programName and an optional description and returns an enable and package option attribute set. package used defaults to programName, if different then use packageName.
+# mkProgramOption
+- Used for wrapping basic program options for NixOS or home-manager
+- takes pkgs programName and an optional description. It returns an enable and package option attribute set. The package used defaults to programName, if different then use the optional packageName argument.
 
 # listToEnableOption
 - takes a list of strings and returns a nested set assigned with a value of true. 
