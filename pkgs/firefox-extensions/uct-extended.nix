@@ -1,8 +1,8 @@
-{ fetchurl, lib, stdenv }@args:
+{ fetchurl, lib, stdenv }:
 let
   buildFirefoxXpiAddon = lib.makeOverridable (
-    { stdenv ? args.stdenv
-    , fetchurl ? args.fetchurl
+    { stdenv ? stdenv
+    , fetchurl ? fetchurl
     , pname
     , version
     , addonId
