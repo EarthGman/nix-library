@@ -13,7 +13,4 @@ in
   fzf-edit = callPackage ./scripts/fzf-edit.nix { };
 
   extraVimPlugins = import ./extraVimPlugins { inherit pkgs inputs; };
-
-  # verion locks from nixpkgs. Used if newer versions are bugged
-  waybar_012 = callPackage ./version-locks/waybar.nix { };
 }
