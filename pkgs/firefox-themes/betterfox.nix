@@ -7,8 +7,8 @@ stdenvNoCC.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
-    rev = "8c39175a02db144d002b899a0c8431332f5184da";
-    hash = "sha256-QEZZBlIzVWhI+Eurhzi82Pa8h3/DCbWWGFZd8ACRfoc=";
+    rev = "140.0";
+    hash = "sha256-gHFA/1PeQ0iNAcjATGwgJOqRlR9YmxD/RJKkYN36QYA";
   };
 
   installPhase = ''
