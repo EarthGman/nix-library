@@ -1,13 +1,13 @@
 { pkgs, stdenvNoCC, ... }:
 
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   pname = "betterfox";
-  version = "133.0";
+  version = "140.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
-    rev = "140.0";
+    rev = "${version}";
     hash = "sha256-gHFA/1PeQ0iNAcjATGwgJOqRlR9YmxD/RJKkYN36QYA";
   };
 
