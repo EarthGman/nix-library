@@ -31,7 +31,9 @@
               inherit inputs;
             };
           default = packages;
-          images = final: prev: import ./overlays/images.nix;
+          images = {
+            images = final: prev: import ./overlays/images.nix;
+          };
         };
       };
     };
