@@ -1,15 +1,20 @@
-{ fetchurl, lib, stdenv }@args:
+{
+  fetchurl,
+  lib,
+  stdenv,
+}@args:
 let
   buildFirefoxXpiAddon = lib.makeOverridable (
-    { stdenv ? args.stdenv
-    , fetchurl ? args.fetchurl
-    , pname
-    , version
-    , addonId
-    , url
-    , sha256
-    , meta
-    , ...
+    {
+      stdenv ? args.stdenv,
+      fetchurl ? args.fetchurl,
+      pname,
+      version,
+      addonId,
+      url,
+      sha256,
+      meta,
+      ...
     }:
     stdenv.mkDerivation {
       name = "${pname}-${version}";
@@ -41,7 +46,10 @@ buildFirefoxXpiAddon rec {
   meta = with lib; {
     description = "Extended version of the UserChrome Toggle extension with additional features.";
     license = licenses.mit;
-    mozPermissions = [ "notifications" "storage" ];
+    mozPermissions = [
+      "notifications"
+      "storage"
+    ];
     platforms = platforms.all;
   };
 }

@@ -1,12 +1,12 @@
-{ inputs, pkgs, stdenvNoCC, ... }:
-let
-  fonts = builtins.fromJSON (builtins.readFile inputs.fonts.outPath);
-in
+{ pkgs, stdenvNoCC, ... }:
 stdenvNoCC.mkDerivation {
   pname = "8-bit-operator-font";
   version = "1.0";
 
-  src = pkgs.fetchurl fonts."8-bit-operator";
+  src = builtins.fetchurl {
+    url = "https://cache.earthgman.net/fonts/8-bit-operator.zip";
+    sha256 = "48c3763eb3dad4496bec6597013fb2940243e0fd149d1d1ad39f2561c1012817";
+  };
   phases = [ "installPhase" ];
 
   installPhase = ''

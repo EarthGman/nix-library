@@ -10,8 +10,4 @@ in
   omori-font = callPackage ./fonts/omori-font.nix { inherit inputs; };
   "8-bit-operator-font" = callPackage ./fonts/8-bit-operator-jve.nix { inherit inputs; };
   mov-cli-youtube = callPackage ./mov-cli-plugins/youtube.nix { };
-  fzf-edit = callPackage ./scripts/fzf-edit.nix { };
-  obsidianPlugins.excalidraw = callPackage ./obsidian-plugins/excalidraw { };
-
-  extraVimPlugins = import ./extraVimPlugins { inherit pkgs inputs; };
 }

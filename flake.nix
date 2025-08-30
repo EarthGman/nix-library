@@ -1,23 +1,39 @@
 {
   description = "my custom nix packages and functions";
 
-  outputs = { nixpkgs, ... } @ inputs:
+  outputs =
+    { nixpkgs, flake-parts, ... }@inputs:
     let
       lib = import ./lib { inherit nixpkgs; };
-      inherit (lib) forAllSystems;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     in
-    {
-      inherit lib;
-      overlays = rec {
-        packages = final: prev: import ./pkgs { pkgs = final; inherit inputs; };
-        default = packages;
+
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      inherit systems;
+      imports = [ inputs.devshell.flakeModule ];
+      perSystem =
+        { pkgs, system, ... }:
+        {
+          packages = import ./pkgs { inherit pkgs inputs; };
+          devshells.default = import ./shell.nix { inherit pkgs; };
+        };
+      flake = {
+        inherit lib;
+        overlays = rec {
+          packages =
+            final: prev:
+            import ./pkgs {
+              pkgs = final;
+              inherit inputs;
+            };
+          default = packages;
+          images = final: prev: import ./overlays/images.nix;
+        };
       };
-      packages = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-        in
-        import ./pkgs { inherit pkgs inputs; }
-      );
     };
 
   inputs = {
@@ -25,19 +41,13 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    blink-cmp = {
-      url = "github:saghen/blink.cmp";
-      inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
     };
 
-    lzn = {
-      url = "github:nvim-neorocks/lz.n";
+    devshell = {
+      url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fonts = {
-      url = "https://raw.githubusercontent.com/EarthGman/assets/master/fonts.json";
-      flake = false;
     };
   };
 }

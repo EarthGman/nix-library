@@ -1,4 +1,9 @@
-{ pkgs, lib, stdenvNoCC, themeConfig ? null }:
+{
+  pkgs,
+  lib,
+  stdenvNoCC,
+  themeConfig ? null,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "shyfox";
   version = "3.8.1";
@@ -16,11 +21,12 @@ stdenvNoCC.mkDerivation rec {
     else
       null;
 
-  installPhase = ''  
+  installPhase = ''
     rm -f *.md LICENSE
     mkdir -p $out
     cp -r ./* $out
-  '' + lib.optionalString (wallpaper != null) ''
+  ''
+  + lib.optionalString (wallpaper != null) ''
     cd $out
     rm -f chrome/wallpaper.png
     ln -sf ${wallpaper} chrome/wallpaper.png
