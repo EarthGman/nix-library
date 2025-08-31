@@ -34,6 +34,11 @@
     sha256 = "c08b24f80845d8cc6a312039b4a80d1bc30151311c56468ee0b29f30ecab6a33";
   };
 
+  home = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/home.gif";
+    sha256 = "b664478e5e8e4b8122beb68a4ad563236ea8c78344016b5a8ed0dc00c5a46876";
+  };
+
   galaxy = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/galaxy.webp";
     sha256 = "a16534b41a7feb86ac7d8dcca80571317019112c0e3f80ba09a81364cffe6ba6";
@@ -284,6 +289,11 @@
     sha256 = "fd1f95939a81a813c53a4335f7c778eb6e2d5cffc6affd8ad7291341f0f3c089";
   };
 
+  va11hall-a-jill = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/va11hall-a-jill.gif";
+    sha256 = "f7fe45139e6d22014970faed2ea1f594fdc23b67f11f90dbb2446b4a5a37b55d";
+  };
+
   heart-red = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/heart-red.png";
     sha256 = "e5af06de8dbbd082f01d9cba8b266659f9b306ccd7fe4927783e5bb6e24dd01c";
@@ -399,6 +409,11 @@
     sha256 = "90cbdaa6d2748a982fe299064fb7b16da20527f61b5a60a24d9d696b8800318f";
   };
 
+  pluto-expanded = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/pluto-expanded.gif";
+    sha256 = "be4fab9b58ff5a61b67b4d2bd423660c5c960ae5cb75198c3f81d69ac48b6e35";
+  };
+
   omori-gang-1 = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/omori-gang-1.jpg";
     sha256 = "87781512aa6d49431592e73c627fbdea767914edc3cf6d2066146f40390b872f";
@@ -507,6 +522,11 @@
   the-pumpkin-patch = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/the-pumpkin-patch.jpg";
     sha256 = "80a7f897e6ae9018f0720018d79646e81afc0d0428b4b0a0133ccba5876d2d29";
+  };
+
+  celeste-chapter-7-end = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/celeste-chapter-7-end.gif";
+    sha256 = "4ff970fa311ce02dcdc9f5f5f4880767db125b8e491963df74d28b27d6c8ab48";
   };
 
   the-sun = builtins.fetchurl {
