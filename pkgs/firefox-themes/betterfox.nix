@@ -2,13 +2,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "betterfox";
-  version = "140.0";
+  version = "142.0";
 
   src = pkgs.fetchFromGitHub {
     owner = "yokoffing";
     repo = "Betterfox";
     rev = "${version}";
-    hash = "sha256-gHFA/1PeQ0iNAcjATGwgJOqRlR9YmxD/RJKkYN36QYA";
+    hash = "sha256-3xvZAMPdGfj8w2AaepWW5xAX05Ry+pN8peLMORKNTIc=";
   };
 
   installPhase = ''
