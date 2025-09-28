@@ -199,6 +199,11 @@
     sha256 = "1a6d85e8ba09647aa56b53856059391bec8aebd8c267aad57a4c3d2a4ad76b48";
   };
 
+  minimizeall = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/minimizeall.svg";
+    sha256 = "fb5c78b120cbc8d5a0001932675d557186a9014ae4f766f1131c06b1c09f8900";
+  };
+
   badeline = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/badeline.png";
     sha256 = "fa4c10dc3711c18071f3f4549419b602965e0818e41a025f6dd25905a3a3deb6";

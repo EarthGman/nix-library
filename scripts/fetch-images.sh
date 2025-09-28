@@ -4,7 +4,7 @@ if [ ! -f ./overlays/images.nix ]; then
 	exit 1
 fi
 
-images=$(lynx -dump -listonly https://cache.earthgman.net/images | grep https | grep -e .jpg -e .png -e .webp -e .gif | awk '{print $2}')
+images=$(lynx -dump -listonly https://cache.earthgman.net/images | grep https | grep -e .jpg -e .png -e .webp -e .gif -e .svg | awk '{print $2}')
 
 asset_path=./overlays/images.nix
 echo "{" >$asset_path
