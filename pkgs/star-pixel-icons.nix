@@ -24,9 +24,9 @@ stdenvNoCC.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/icons
-    cp -r src/SPI $out/share/icons
-    gtk-update-icon-cache $out/share/icons/SPI
+    mkdir -p $out/share/icons/star-pixel-icons
+    cp -r src/SPI/* $out/share/icons/star-pixel-icons
+    gtk-update-icon-cache $out/share/icons/star-pixel-icons
 
     runHook postInstall
   '';
