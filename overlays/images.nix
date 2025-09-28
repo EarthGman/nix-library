@@ -144,6 +144,11 @@
     sha256 = "14526690658ba3c309d0ffee2e53d8c7c93960b81c04d28b01475981a151a81e";
   };
 
+  the-sun = builtins.fetchurl {
+    url = "https://cache.earthgman.net/images/the-sun.png";
+    sha256 = "9bea6c92cdfe4640bcd980370d06b42b0605380d4ad3c3f080981a97a57d5ced";
+  };
+
   nebula = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/nebula.jpg";
     sha256 = "ac1d76ef137a2632d83be00f08858a0515cf61686b5bc5d04946e5e69e03c5f9";
@@ -532,11 +537,6 @@
   celeste-chapter-7-end = builtins.fetchurl {
     url = "https://cache.earthgman.net/images/celeste-chapter-7-end.gif";
     sha256 = "4ff970fa311ce02dcdc9f5f5f4880767db125b8e491963df74d28b27d6c8ab48";
-  };
-
-  the-sun = builtins.fetchurl {
-    url = "https://cache.earthgman.net/images/the-sun.jpg";
-    sha256 = "2f855512f359d3da3e75bf9145f03620ffbc03bcf6498b820f2136eb47540160";
   };
 
   april-4 = builtins.fetchurl {
